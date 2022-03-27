@@ -17,23 +17,65 @@
       function choose()
       {
         var ch=Math.round(Math.random());
-        var final;
-        if(ch==1)
+        var sel=document.getElementById("inputGroupSelect01");
+        if(Number(sel.options[sel.selectedIndex].value)!=3) ch=Number(sel.options[sel.selectedIndex].value);
+        var final="您抽中的是：";
+        var cnt=Number(document.getElementById("inputGroupText01").value);
+        for(var i=1; i<=cnt; i++)
         {
-          final=rand(1,15);
+          if(ch==1)
+          {
+            final=final+String(rand(1,15));
+          }
+          else
+          {
+            final=final+String(rand(31,52));
+          }
+          if(i<cnt) final=final+", ";
         }
-        else
-        {
-          final=rand(31,52);
-        }
-        document.getElementsByClassName("modal-body")[0].innerHTML="您抽中的是："+String(final)+"号";
+        document.getElementsByClassName("modal-body")[0].innerHTML=final+"号";
       }
     </script>
   </head>
   <body>
-    <h1>学号抽取器</h1>
-
+    <!-- Java Script support-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">工具栏</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-10 mb-lg-7">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">学号抽取</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">计时器（敬请期待）</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <h3>学号抽取器</h3>
+    <!-- Form -->
+    <div class="input-group mb-3 me-auto">
+      <label class="input-group-text" for="inputGroupSelect01">性别</label>
+      <select class="form-select" id="inputGroupSelect01">
+        <option selected>选择性别</option>
+        <option value="1">女（1-15号）</option>
+        <option value="2">男（31-52号）</option>
+        <option value="3">随机</option>
+      </select>
+    </div>
+    <div class="input-group mb-3 me-auto">
+      <label class="input-group-text" for="inputGroupText01">数量</label>
+      <input type="text" id="inputGroupText01" class="form-control" placeholder="1" aria-label="Number" aria-describedby="inputGroupText01">
+    </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" onclick="choose()" data-bs-toggle="modal" data-bs-target="#exampleModal">
       抽取！
