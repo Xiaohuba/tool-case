@@ -21,8 +21,11 @@
         if(Number(sel.options[sel.selectedIndex].value)!=3) ch=Number(sel.options[sel.selectedIndex].value);
         var final="您抽中的是：";
         var cnt=Number(document.getElementById("inputGroupText01").value);
+        if(cnt==0) cnt=1;
         for(var i=1; i<=cnt; i++)
         {
+          ch=Math.round(Math.random());
+          if(Number(sel.options[sel.selectedIndex].value)!=3) ch=Number(sel.options[sel.selectedIndex].value);
           if(ch==1)
           {
             final=final+String(rand(1,15));
@@ -90,7 +93,7 @@
            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="main-text">
-            ...
+            好像出了点小问题...
           </div>
           <div class="modal-footer">
            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
