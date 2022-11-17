@@ -10,25 +10,25 @@
 
     <title>工具包</title>
     <script>
-      function rand(x,y)
+      function rand(n,m)
       {
-        return Math.round(Math.random()*(y-x)+x);
+        return Math.floor(Math.random() * (m - n + 1)) + n;
       }
       function choose()
       {
-        var ch=Math.round(Math.random());
-        var sel=document.getElementById("inputGroupSelect01");
-        if(Number(sel.options[sel.selectedIndex].value)!=3) ch=Number(sel.options[sel.selectedIndex].value);
-        var final="您抽中的是：";
-        var cnt=Number(document.getElementById("inputGroupText01").value);
+        var sel = document.getElementById("inputGroupSelect01");
+        var final = "您抽中的是：";
+        var cnt = Number(document.getElementById("inputGroupText01").value);
         if(cnt==0) cnt=1;
-        for(var i=1; i<=cnt; i++)
+        
+        let sx = Number(sel.options[sel.selectedIndex].value);
+        let ch = (sx==1 || sx==2) ? Math.round(Math.random()) : Number(sel.options[sel.selectedIndex].value);
+        
+        for(var i = 1; i <= cnt; i++)
         {
-          ch=Math.round(Math.random());
-          if(Number(sel.options[sel.selectedIndex].value)!=3) ch=Number(sel.options[sel.selectedIndex].value);
           if(ch==1)
           {
-            final=final+String(rand(1,15));
+            final=final+String(rand(1,16));
           }
           else
           {
@@ -70,7 +70,7 @@
       <label class="input-group-text" for="inputGroupSelect01">性别</label>
       <select class="form-select" id="inputGroupSelect01">
         <option selected>选择性别</option>
-        <option value="1">女（1-15号）</option>
+        <option value="1">女（1-16号）</option>
         <option value="2">男（31-52号）</option>
         <option value="3">随机</option>
       </select>
@@ -83,7 +83,10 @@
     <button type="button" class="btn btn-primary" onclick="choose()" data-bs-toggle="modal" data-bs-target="#exampleModal">
       抽取！
     </button>
-
+    <div>
+      <h5>更新日志</h5>
+      <p>2022.11.17 修复了随机数。</p>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
